@@ -15,23 +15,28 @@ if ($conn->connect_error) {
     echo "Conexión exitosa<br>";
 }
 
-// Verificar datos del formulario
-if (isset($_POST['nombre']) && isset($_POST['email'])) {
-    $nombre = $conn->real_escape_string($_POST['nombre']);
-    $email = $conn->real_escape_string($_POST['email']);
+// Verificar que el método de solicitud es POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['nombre']) && isset($_POST['email'])) {
+        // Escapar y sanitizar datos del formulario
+        $nombre = $conn->real_escape_string($_POST['nombre']);
+        $email = $conn->real_escape_string($_POST['email']);
 
-    echo "Datos recibidos: Nombre = $nombre, Email = $email<br>";
+        echo "Datos recibidos: Nombre = $nombre, Email = $email<br>";
 
-    // Insertar datos en la base de datos
-    $sql = "INSERT INTO usuarios (nombre, email) VALUES ('$nombre', '$email')";
+        // Insertar datos en la base de datos
+        $sql = "INSERT INTO usuarios (nombre, email) VALUES ('$nombre', '$email')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Nuevo registro creado exitosamente";
+        if ($conn->query($sql) === TRUE) {
+            echo "Nuevo registro creado exitosamente";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Datos del formulario no recibidos.";
     }
 } else {
-    echo "Datos del formulario no recibidos.";
+    echo "Método de solicitud no es POST.";
 }
 
 $conn->close();
