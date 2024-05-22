@@ -12,11 +12,12 @@
     <h1>Captura de Informacion</h1>
     <form id="myForm" action="procesar_formulario.php" method="POST">
         <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
         <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
+        <input type="email" id="email" name="email" required><br><br>
         <input type="submit" value="Enviar" onclick="setFormAction('procesar_formulario.php')">
-        <input type="submit" value="Consultar" onclick="setFormAction('consultar.php')">
+        <input type="button" value="Otra Acción" onclick="setFormAction('otra_clase.php'); document.getElementById('myForm').submit();">
     </form>
 </body>
 </html>
+
