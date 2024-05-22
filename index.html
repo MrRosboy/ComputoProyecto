@@ -2,15 +2,20 @@
 <html>
 <head>
     <title>Formulario de Captura</title>
+    <script>
+        function setFormAction(action) {
+            document.getElementById('myForm').action = action;
+        }
+    </script>
 </head>
 <body>
     <h1>Captura de Informacion</h1>
-    <form action="procesar_formulario.php" method="POST">
+    <form id="myForm" action="procesar_formulario.php" method="POST">
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" required><br>
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br>
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Enviar" onclick="setFormAction('procesar_formulario.php')">
         <input type="submit" value="Consultar" onclick="setFormAction('consultar.php')">
     </form>
 </body>
