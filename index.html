@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulario de Captura</title>
+    <title>Login</title>
 </head>
 <body>
-    <h1>Captura de Informacion</h1>
-    <form action="procesar_formulario.php" method="POST">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
-        <input type="submit" value="Enviar"><br><br>
+    <h1>Login</h1>
+    <form action="login.php" method="POST">
+        <label for="username">Usuario:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Iniciar sesión"><br><br>
     </form>
-    <a href="consultar.php" class="button">Consultar</a>
-</body>
-</html> 
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
+        // Autenticación básica
+        $correct_username = 'admin';
+        $correct_password = 'password';
+
+        if ($username == $correct_username && $password == $correct_password) {
+            session_start();
+            $_SESSION['loggedin'] = true;
+            header('Location: formulario.php');
+            exit;
+        } else {
+            echo '<p style="color:red;">Usuario o contraseña incorrectos</p>';
+        }
+    }
+    ?>
+</body>
+</html>
