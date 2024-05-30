@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <h1>Login</h1>
-    <form action="login.php" method="POST">
+    <form action="formulario.php" method="POST">
         <label for="username">Usuario:</label><br>
         <input type="text" id="username" name="username" required><br>
         <label for="password">Contraseña:</label><br>
