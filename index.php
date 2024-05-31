@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Credenciales almacenadas en el código
     $correct_username = 'admin';
-    $correct_password = 'Edgar##$';
+    $correct_password = 'password';
 
     if ($username === $correct_username && $password === $correct_password) {
         $_SESSION['loggedin'] = true;
