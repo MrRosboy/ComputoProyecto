@@ -1,40 +1,26 @@
-
 <?php
-include 'config.php';
-
-// Iniciar la sesión
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST["usuario"];
-    $contrasena = $_POST["contrasena"];
-
-    // Consulta SQL para verificar las credenciales
-    $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
-    $resultado = $conn->query($sql);
-
-    if ($resultado->num_rows > 0) {
-        $fila = $resultado->fetch_assoc();
-        // Verificar si la contraseña coincide
-        if (password_verify($contrasena, $fila["contrasena"])) {
-            // Iniciar la sesión y redirigir al usuario
-            $_SESSION["usuario_id"] = $fila["id"];
-            header("Location: formulario.html");
-            exit;
-        } else {
-            echo "Contraseña incorrecta.";
-        }
-    } else {
-        echo "Usuario no encontrado.";
-    }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['loggedin'] = true;
+    header('Location: formulario.php');
+    exit;
 }
 ?>
-<link rel="stylesheet" href="style.css">
-<!-- Formulario de inicio de sesión -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <label for="usuario">Usuario:</label>
-    <input type="text" id="usuario" name="usuario" required><br><br>
-    <label for="contrasena">Contraseña:</label>
-    <input type="password" id="contrasena" name="contrasena" required><br><br>
-    <input type="submit" value="Iniciar sesión">
-</form>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="login.php" method="POST">
+        <label for="username">Usuario:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Iniciar sesión"><br><br>
+    </form>
+</body>
+</html>
