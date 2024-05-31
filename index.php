@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($contrasena, $fila["contrasena"])) {
             // Iniciar la sesión y redirigir al usuario
             $_SESSION["usuario_id"] = $fila["id"];
-            header("Location: index.php");
+            header("Location: formulario.html");
             exit;
         } else {
             echo "Contraseña incorrecta.";
