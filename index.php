@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($username === $correct_username && $password === $correct_password) {
         $_SESSION['loggedin'] = true;
-        header('Location: index.php');
+        header('Location: formulario.php');
         exit;
     } else {
         $error_message = 'Usuario o contraseña incorrectos';
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <h1>Login</h1>
-    <form action="formulario.php" method="POST">
+    <form action="index.php" method="POST">
         <label for="username">Usuario:</label><br>
         <input type="text" id="username" name="username" required><br>
         <label for="password">Contraseña:</label><br>
