@@ -2,9 +2,20 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $_SESSION['loggedin'] = true;
-    header('Location: formulario.php');
-    exit;
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Credenciales almacenadas en el código
+    $correct_username = 'admin';
+    $correct_password = 'Edgar##$';
+
+    if ($username === $correct_username && $password === $correct_password) {
+        $_SESSION['loggedin'] = true;
+        header('Location: formulario.php');
+        exit;
+    } else {
+        $error_message = 'Usuario o contraseña incorrectos';
+    }
 }
 ?>
 
@@ -22,5 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="password" id="password" name="password" required><br>
         <input type="submit" value="Iniciar sesión"><br><br>
     </form>
+    <?php
+    if (isset($error_message)) {
+        echo '<p style="color:red;">' . $error_message . '</p>';
+    }
+    ?>
 </body>
 </html>
