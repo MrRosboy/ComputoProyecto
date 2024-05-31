@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($username === $correct_username && $password === $correct_password) {
         $_SESSION['loggedin'] = true;
-        header('Location: formulario.php');
+        header('Location: index.php');
         exit;
     } else {
         $error_message = 'Usuario o contraseña incorrectos';
