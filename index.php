@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Credenciales almacenadas en el código
-    $correct_username = 'admin';
-    $correct_password = 'password';
+    $correct_username = 'Edgar';
+    $correct_password = 'Edgar##$';
 
     if ($username === $correct_username && $password === $correct_password) {
         $_SESSION['loggedin'] = true;
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <h1>Login</h1>
-    <form action="login.php" method="POST">
+    <form action="formulario.php" method="POST">
         <label for="username">Usuario:</label><br>
         <input type="text" id="username" name="username" required><br>
         <label for="password">Contraseña:</label><br>
