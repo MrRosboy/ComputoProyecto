@@ -17,20 +17,7 @@ if ($conn->connect_error) {
 
 // Verificar que el método de solicitud es POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: login.php');
-    exit;
-}
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-
-    // Aquí puedes añadir el código para procesar y almacenar los datos del formulario
-    echo "Nombre: $nombre<br>";
-    echo "Email: $email<br>";
-}
     if (isset($_POST['nombre']) && isset($_POST['email'])) {
         // Escapar y sanitizar datos del formulario
         $nombre = $conn->real_escape_string($_POST['nombre']);
